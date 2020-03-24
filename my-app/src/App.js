@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './twitter.svg';
 import './App.css';
-import InputField from './components/InputField.js'
+import TopicInputField from './components/TopicInputField.js'
 import theme from './themes/Theme'
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -14,7 +14,7 @@ function App() {
           <p>
             Tweet Analyzer
           </p>
-          <InputField/>
+          <TopicInputField/>
         </header>
       </div>
     </ThemeProvider>
