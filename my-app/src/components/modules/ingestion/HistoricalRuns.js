@@ -76,6 +76,7 @@ export default function HistoricalRuns() {
 
   return (
     <Paper className={classes.root} elevation={3}>
+      <h6>Previous Runs</h6>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

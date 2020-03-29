@@ -1,5 +1,7 @@
 import React from 'react';
 import IngestionModule from './modules/ingestion/IngestionModule'
+import MonitoringModule from './modules/monitoring/MonitoringModule'
+import MenuAppBar from './MenuAppBar'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -56,6 +58,7 @@ export default function Navigation() {
 
     return (
        <div className={classes.root}>
+          <MenuAppBar />
           <AppBar position="static">
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
               <Tab label="INGESTION" {...a11yProps(0)} />
@@ -67,6 +70,7 @@ export default function Navigation() {
           </TabPanel>
           <TabPanel value={value} index={1} className="Tab-panel">
             MONITORING PANEL
+            <MonitoringModule />
           </TabPanel>
         </div>
     );

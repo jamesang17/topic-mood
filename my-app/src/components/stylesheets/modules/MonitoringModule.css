@@ -1,4 +1,4 @@
-.Ingestion-module {
+.Monitoring-module {
   background-color: white;
   min-height: 80vh;
   display: flex;
@@ -9,7 +9,7 @@
   color: #282c34;
 }
 
-.Ingestion-component {
+.Monitoring-component {
   background-color: white;
   min-height: 50vh;
   display: flex;
