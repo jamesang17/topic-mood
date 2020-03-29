@@ -1,0 +1,7 @@
+.Tab-panel {
+  min-height: 1vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
+}
