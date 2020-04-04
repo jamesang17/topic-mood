@@ -1,4 +1,5 @@
 import React from 'react';
+import logProps from '../../logProps'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -136,4 +137,7 @@ class HistoricalRuns extends React.Component {
     }
 }
 
-export default withStyles(styles)(HistoricalRuns);
+export default logProps(withStyles(styles)(HistoricalRuns));
+// export default React.forwardRef((props, ref) => <HistoricalRuns 
+//   innerRef={ref} {...props}
+// />);
