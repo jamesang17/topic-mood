@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 5vmin;
+  margin: 1vh;
+  pointer-events: none;
+}

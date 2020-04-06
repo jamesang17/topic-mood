@@ -1,0 +1,21 @@
+.Ingestion-module {
+  background-color: white;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
+}
+
+.Ingestion-component {
+  background-color: white;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
+}
