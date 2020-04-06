@@ -6,20 +6,6 @@ import Button from '@material-ui/core/Button';
 import { MContext } from './ChartProvider';
 
 class MonitorTopicInput extends React.Component {
-	constructor(props) {
-		super(props);
-
-		// this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	// handleChange(event) {
- //        this.setState({topic: event.currentTarget.value})
- //    }
-
-    sendData = () => {
-    	this.props.parentCallback("Hey!")
-    }
 
     render() {
     	return (

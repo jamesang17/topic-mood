@@ -1,7 +1,7 @@
 import React from 'react';
-import IngestionModule from './modules/ingestion/IngestionModule'
-import MonitoringModule from './modules/monitoring/MonitoringModule'
-import MenuAppBar from './MenuAppBar'
+import IngestionModule from '../ingestion/IngestionModule';
+import MonitoringModule from '../monitoring/MonitoringModule';
+import MenuAppBar from './MenuAppBar';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +9,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import './stylesheets/Navigation.css'
+import './Navigation.css';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

@@ -23,18 +23,18 @@ class ListTopics extends React.Component {
         return (
             <List component="nav" className={classes.root} aria-label="mailbox folders">
                 <ListItem button>
-                    <ListItemText primary="Inbox" />
+                    <ListItemText primary="NYC" />
                 </ListItem>
                 <Divider />
                 <ListItem button divider>
-                    <ListItemText primary="Drafts" />
+                    <ListItemText primary="NBA" />
                 </ListItem>
                 <ListItem button>
-                    <ListItemText primary="Trash" />
+                    <ListItemText primary="Hospital" />
                 </ListItem>
                 <Divider light />
                 <ListItem button>
-                    <ListItemText primary="Spam" />
+                    <ListItemText primary="Star Wars" />
                 </ListItem>
             </List>
         )

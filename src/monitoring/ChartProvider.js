@@ -10,7 +10,10 @@ export default class ChartProvider extends React.Component {
 		this.state = {
 			value: "",
 			topic: "",
-			data: []
+			data: [],
+			latestSen: "",
+			posSent: "",
+			negSent: ""
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -41,6 +44,9 @@ export default class ChartProvider extends React.Component {
         //         console.log(res);
         //         console.log(res.data);
         //     })
+        this.setState({latestSen: 0.0458});
+        this.setState({posSent: "this is great!"});
+        this.setState({negSent: "this sucks"});
 	}
 
 	render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import HistoricalRuns from './HistoricalRuns'
 import StartIngestMenu from './StartIngestMenu'
-import '../../stylesheets/modules/IngestionModule.css'
+import './IngestionModule.css'
 
 class IngestionModule extends React.Component {
     constructor(props) {

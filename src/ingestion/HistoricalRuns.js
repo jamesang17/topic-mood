@@ -1,5 +1,5 @@
 import React from 'react';
-import logProps from '../../logProps'
+import logProps from '../components/logProps';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
