@@ -21,7 +21,7 @@ export default class ChartProvider extends React.Component {
 	}
 
 	async componentDidMount() {
-		axios.get("https://wwxa5xebjh.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics")
+		axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics")
 			.then((response) => {
 				var data = JSON.parse(response.data["body"]);
 				let items = data["Items"];
@@ -40,7 +40,7 @@ export default class ChartProvider extends React.Component {
 	handleSubmit(event) {
 		console.log("Button was clicked!");
         console.log("value: " + this.state.value);
-		axios.get("https://wwxa5xebjh.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + this.state.value)
+		axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + this.state.value)
 			.then((response) => {
 				var data = JSON.parse(response.data["body"]);
 				var sentimentData = []
