@@ -13,10 +13,24 @@ export default class ChartProvider extends React.Component {
 			data: [],
 			latestSen: "",
 			posSent: "",
-			negSent: ""
+			negSent: "",
+			previousTopics: []
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+	}
+
+	async componentDidMount() {
+		axios.get("https://wwxa5xebjh.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics")
+			.then((response) => {
+				var data = JSON.parse(response.data["body"]);
+				let items = data["Items"];
+				var topics = [];
+				for (var i=0;i<4;i++){
+					topics.push(items[i]["topic"]);
+				}
+				this.setState({ previousTopics: topics });
+			})
 	}
 
 	handleChange(event) {
@@ -26,27 +40,22 @@ export default class ChartProvider extends React.Component {
 	handleSubmit(event) {
 		console.log("Button was clicked!");
         console.log("value: " + this.state.value);
-
-        this.setState({ data: [
-				{date: "2020-03-31", sentiment: 0.018},
-				{date: "2020-04-01", sentiment: 0.8258},
-				{date: "2020-04-02", sentiment: 0.258},
-				{date: "2020-04-03", sentiment: 0.0458}
-			]});
-		this.setState({topic: "nyc"});
-
-        // const sentiment = {
-        //     topic: this.state.value
-        // };
-
-        // axios.get('https://wwxa5xebjh.execute-api.us-east-1.amazonaws.com/production/sentimentresults/topics')
-        //     .then(res => {
-        //         console.log(res);
-        //         console.log(res.data);
-        //     })
-        this.setState({latestSen: 0.0458});
-        this.setState({posSent: "this is great!"});
-        this.setState({negSent: "this sucks"});
+		axios.get("https://wwxa5xebjh.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + this.state.value)
+			.then((response) => {
+				var data = JSON.parse(response.data["body"]);
+				var sentimentData = []
+				let items = data["Items"];
+				for(var i=0;i<items.length;i++){
+					var timestamp = items[i]["timestamp"];
+					var sentiment = items[i]["sentiment"];
+					sentimentData.push({ timestamp,sentiment });
+				}
+				this.setState({ data: sentimentData });
+				this.setState({ topic: items[0]["topic"]});
+				this.setState({ latestSen: items[items.length-1]["sentiment"]});
+				this.setState({ posSent: items[items.length-1]["maxPosText"]});
+				this.setState({ negSent: items[items.length-1]["maxNegText"]});
+			});
 	}
 
 	render() {

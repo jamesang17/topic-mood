@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "proxy": "http://localhost:8000",
   "private": true,
   "homepage": "https://jamesang17.github.io/topic-mood/",
   "dependencies": {
@@ -11,11 +12,13 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "express": "^4.17.1",
     "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "recharts": "^1.8.5"
+    "recharts": "^1.8.5",
+    "request": "^2.88.2"
   },
   "scripts": {
     "start": "react-scripts start",
