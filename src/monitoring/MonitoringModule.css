@@ -9,13 +9,19 @@
   color: #282c34;
 }
 
-.Monitoring-component {
-  background-color: white;
+.Monitoring-component-container {
   min-height: 20vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
+}
+
+.Monitoring-component {
+  vertical-align: text-top;
+  min-height: 20vh;
   font-size: calc(10px + 2vmin);
   color: #282c34;
 }

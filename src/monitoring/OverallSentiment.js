@@ -18,28 +18,28 @@ class OverallSentiment extends React.Component {
 			return (
 				<div>
 					<p>Positive</p>
-					<SentimentSatisfiedRoundedIcon />
+					<SentimentSatisfiedRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
 		} else if (sentVal <= -0.2 && sentVal >= -0.7) {
 			return (
 				<div>
 					<p>Negative</p>
-					<SentimentDissatisfiedRoundedIcon />
+					<SentimentDissatisfiedRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
 		} else if (sentVal < -0.7) {
 			return (
 				<div>
 					<p>Very Negative</p>
-					<SentimentVeryDissatisfiedRoundedIcon />
+					<SentimentVeryDissatisfiedRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
 		} else if (sentVal > 0.7) {
 			return (
 				<div>
 					<p>Very Positive</p>
-					<SentimentVerySatisfiedRoundedIcon />
+					<SentimentVerySatisfiedRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
 		} else if (sentVal === "") {
@@ -48,7 +48,7 @@ class OverallSentiment extends React.Component {
 			return (
 				<div>
 					<p>Neutral</p>
-					<FaceRoundedIcon />
+					<FaceRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
 		}
