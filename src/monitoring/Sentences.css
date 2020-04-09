@@ -1,0 +1,7 @@
+.Sentence-container {
+	max-width: 50%;
+}
+
+.Sentence {
+	word-break: break-all
+}

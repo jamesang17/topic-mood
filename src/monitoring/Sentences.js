@@ -2,6 +2,7 @@ import React from 'react';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import { MContext } from './ChartProvider';
+import './Sentences.css';
 
 class Sentences extends React.Component {
 	constructor(props) {
@@ -10,15 +11,15 @@ class Sentences extends React.Component {
 
 	render() {
 		return(
-			<div>
-				<p>Sentences</p>
+			<div className="Sentence-container">
+				<p className="Sentence-header">Sentences</p>
 				<MContext.Consumer>
 					{(context) => (
 						<div>
 							<ThumbUpIcon />
-							<p>{context.state.posSent}</p>
+							<p className="Sentence">{context.state.posSent}</p>
 							<ThumbDownIcon />
-							<p>{context.state.negSent}</p>
+							<p className="Sentence">{context.state.negSent}</p>
 						</div>
 					)}
 				</MContext.Consumer>
