@@ -18,29 +18,40 @@ export default class ChartProvider extends React.Component {
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleItemClick = this.handleItemClick.bind(this);
+		this.getTopicData = this.getTopicData.bind(this);
+		this.getTopics = this.getTopics.bind(this);
 	}
 
-	async componentDidMount() {
+	async getTopics() {
 		axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics")
 			.then((response) => {
 				var data = JSON.parse(response.data["body"]);
 				let items = data["Items"];
 				var topics = [];
+				var seen = new Set();
 				for (var i=0;i<4;i++){
-					topics.push(items[i]["topic"]);
+					var idx = Math.floor(Math.random() * items.length);
+					if (!seen.has(idx)) {
+						topics.push(items[idx]["topic"]);
+					} else {
+						seen.add(idx);
+					}
 				}
 				this.setState({ previousTopics: topics });
 			})
 	}
 
+	componentDidMount() {
+		this.getTopics();
+	}
+
 	handleChange(event) {
         this.setState({value: event.currentTarget.value});
-    }	
+    }
 
-	handleSubmit(event) {
-		console.log("Button was clicked!");
-        console.log("value: " + this.state.value);
-		axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + this.state.value)
+	async getTopicData(topic) {
+		axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + topic)
 			.then((response) => {
 				var data = JSON.parse(response.data["body"]);
 				var sentimentData = []
@@ -58,10 +69,27 @@ export default class ChartProvider extends React.Component {
 			});
 	}
 
+	handleSubmit(event) {
+		console.log("Button was clicked!");
+        console.log("value: " + this.state.value);
+		this.getTopicData(this.state.value);
+	}
+
+	handleItemClick(event) {
+		const topic  = event.currentTarget.innerText;
+		this.setState(
+			{topic: topic},
+			function() {
+				console.log("Item topic: " + this.state.topic);
+				this.getTopicData(this.state.topic);
+			}
+		);
+	}
+
 	render() {
 		return (
 			<MContext.Provider value = {
-				{ state: this.state, 
+				{ state: this.state,
 					setTopic: (value) => this.setState({
 						topic: value
 					}),
@@ -69,10 +97,12 @@ export default class ChartProvider extends React.Component {
 						data: value
 					}),
 					handleSubmit: this.handleSubmit,
-					handleChange: this.handleChange
+					handleChange: this.handleChange,
+					handleItemClick: this.handleItemClick,
+					getTopics: this.getTopics
 				}
 			}>
-			{this.props.children} 
+			{this.props.children}
 			</MContext.Provider>
 		)
 	}

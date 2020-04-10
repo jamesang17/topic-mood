@@ -11,9 +11,8 @@ class OverallSentiment extends React.Component {
 		super(props);
 		this.renderEmoji = this.renderEmoji.bind(this);
 	}
-	
+
 	renderEmoji(sentVal) {
-		console.log(sentVal);
 		if (sentVal >= 0.2 && sentVal <= 0.7) {
 			return (
 				<div>
@@ -63,7 +62,7 @@ class OverallSentiment extends React.Component {
 						<div>{this.renderEmoji(context.state.latestSen)}</div>
 					)}
 				</MContext.Consumer>
-		    </div>		
+		    </div>
 		)
 	}
 }

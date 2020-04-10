@@ -4,7 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import { MContext } from './ChartProvider';
 
 
@@ -17,10 +18,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 class ListTopics extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const classes = useStyles;
 
@@ -28,16 +25,25 @@ class ListTopics extends React.Component {
             <div>
                 <MContext.Consumer>
                     {(context) => (
-                    <List component="nav" className={classes.root} aria-label="mailbox folders">
-                        {context.state.previousTopics.map((value,index) => {
-                            return (
-                                <ListItem key={index} button>
-                                    <ListItemText primary={value} />
-                                </ListItem>                                
-                            )
-                        })
-                        }
-                    </List>
+                    <div>
+                        <div className="Refresh-button">
+                            <Button variant="contained" color="primary"
+                                endIcon={<RefreshIcon style={{ fontSize: 25 }} />}
+                                onClick={context.getTopics}>
+                                Refresh Topics
+                            </Button>
+                        </div>
+                        <List component="nav" className={classes.root} aria-label="mailbox folders">
+                            {context.state.previousTopics.map((value,index) => {
+                                return (
+                                    <ListItem key={index} button onClick={context.handleItemClick}>
+                                        <ListItemText primary={value} />
+                                    </ListItem>
+                                )
+                            })
+                            }
+                        </List>
+                    </div>
                     )}
                 </MContext.Consumer>
             </div>
