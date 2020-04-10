@@ -4,7 +4,7 @@ Simple UI where a user can input and visualize sentiment around a certain topic 
 This app works in conjunction with the [Airflow-App](https://github.com/jamesang17/airflow-app) project.
 
 ### Tech Stack
-Express, Axios, React, Re-Charts, Material-UI
+Express(https://expressjs.com/), Axios(https://github.com/axios/axios), React(https://reactjs.org/), Re-Charts(https://recharts.org/en-US/), Material-UI(https://material-ui.com/)
 
 ### Description
 The app uses Express as the backend to handle api calls to airflow's REST API via the request handler axios.
