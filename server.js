@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 4000;
 
 const app = express(); // initialize express
+app.use(cors());
 
 // index route (require from index routes file and pass in express app)
 require('./routes/index')(app);
