@@ -11,7 +11,7 @@ The app uses Express as the backend to handle api calls to airflow's REST API vi
 Axios is also used to send requests to AWS API Gateway to interact with DynamoDB.
 Data gets pulled from both DynamoDB and Airflow MySQL database and is rendered on the UI.
 
-##### Functionality
+### Functionality
 The user can
 - trigger dags on Airflow from the UI
 - view past airflow runs
