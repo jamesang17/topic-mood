@@ -23,13 +23,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 class StartIngestMenu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            apiResponse: ""
-        }
-    }
-
 	render() {
 		return (
 			<div>
@@ -60,7 +53,7 @@ class StartIngestMenu extends React.Component {
                             </Button>
                             <Button onClick={context.handleSubmit} color="primary" >
                                 Start
-                            </Button>                                
+                            </Button>
                         </DialogActions>
                     </Dialog>
                     </div>
