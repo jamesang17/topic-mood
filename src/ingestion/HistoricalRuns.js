@@ -1,6 +1,8 @@
 import React from 'react';
 import logProps from '../components/logProps';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import { MContext } from './IngestionProvider';
+import './HistoricalRuns.css';
 
 const styles = makeStyles({
     table: {
@@ -20,9 +23,6 @@ const styles = makeStyles({
 class HistoricalRuns extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            apiResponse: "",
-        };
     }
 
     render() {
@@ -33,6 +33,14 @@ class HistoricalRuns extends React.Component {
             <div>
                 <MContext.Consumer>
                     {(context) => (
+                    <div>
+                        <div className="Refresh-button">
+                            <Button variant="contained" color="primary"
+                                endIcon={<RefreshIcon style={{ fontSize: 40 }} />}
+                                 onClick={context.getDagRuns}>
+                                 Refresh
+                            </Button>
+                        </div>
                         <TableContainer component={Paper}>
                             <Table className={classes.table} aria-label="Ingestion Runs"
                                 stickyHeader={true} size="medium">
@@ -54,6 +62,7 @@ class HistoricalRuns extends React.Component {
                                 </TableBody>
                             </Table>
                         </TableContainer>
+                    </div>
                     )}
                 </MContext.Consumer>
             </div>

@@ -6,16 +6,38 @@ export default class IngestionProvider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			runData: []
+			runData: [],
+			submitted: false,
+			open: false,
+			topic: "",
+			apiResponse: ""
 		}
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.getDagRuns = this.getDagRuns.bind(this);
         this.parseAndSetDagRuns = this.parseAndSetDagRuns.bind(this);
+		this.handleClickOpen = this.handleClickOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+		this.triggerRun = this.triggerRun.bind(this);
 	}
 
-    handleSubmit() {
+	handleClickOpen(event) {
+		console.log("Opening!");
+		this.setState({ open: true });
+	}
 
-    }
+	handleClose(event) {
+		console.log("Closing!");
+		this.setState({ open: false });
+	}
+
+	handleSubmit(event) {
+		console.log("Clicked submit!");
+		console.log("Topic: " + this.state.topic);
+		this.setState({ submitted: true });
+		this.triggerRun();
+		console.log("Response: " + this.state.apiResponse);
+		this.setState({ open: false });
+	}
 
     parseAndSetDagRuns(data) {
         var runs = [];
@@ -28,7 +50,6 @@ export default class IngestionProvider extends React.Component {
             runs.push(run);
         }
         this.setState({ runData: runs });
-		console.log(this.state.runData);
     }
 
     getDagRuns() {
@@ -36,11 +57,18 @@ export default class IngestionProvider extends React.Component {
 			.then((response) => response.json())
             .then((response) => this.parseAndSetDagRuns(response))
             .catch((error) => error);
+		this.setState({ submitted: false });
     }
+
+	triggerRun() {
+		fetch("http://localhost:4000/trigger_dag/" + this.state.topic)
+			.then(response => response.text())
+			.then(response => this.setState({ apiResponse: response }));
+		this.getDagRuns();
+	}
 
     componentDidMount() {
         this.getDagRuns();
-		console.log("RunData: " + this.state.runData);
     }
 
     render() {
@@ -50,7 +78,16 @@ export default class IngestionProvider extends React.Component {
 					setRunData: (value) => this.setState({
 						runData: value
 					}),
+					setSubmitted: (value) => this.setState({
+						submitted: value
+					}),
+					setTopic: (value) => this.setState({
+						topic: value
+					}),
+					handleClickOpen: this.handleClickOpen,
+					handleClose: this.handleClose,
 					handleSubmit: this.handleSubmit,
+					getDagRuns: this.getDagRuns
 				}
 			}>
 			{this.props.children}
