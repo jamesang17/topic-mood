@@ -1,7 +1,8 @@
 import React from 'react';
-import HistoricalRuns from './HistoricalRuns'
-import StartIngestMenu from './StartIngestMenu'
-import './IngestionModule.css'
+import IngestionProvider from './IngestionProvider';
+import HistoricalRuns from './HistoricalRuns';
+import StartIngestMenu from './StartIngestMenu';
+import './IngestionModule.css';
 
 class IngestionModule extends React.Component {
     constructor(props) {
@@ -10,20 +11,20 @@ class IngestionModule extends React.Component {
     }
 
     componentDidMount() {
-        /* Uses DOM node  */ 
+        /* Uses DOM node  */
     }
-
-    wrapper = React.createRef();
 
     render() {
         return (
             <div className="Ingestion-module">
-                <div className="Ingestion-component">
-                    <StartIngestMenu />
-                </div>
-                <div className="Ingestion-component">
-                    <HistoricalRuns ref={this.wrapper} />
-                </div>
+                <IngestionProvider>
+                    <div className="Ingestion-component">
+                        <StartIngestMenu />
+                    </div>
+                    <div className="Historical-Runs">
+                        <HistoricalRuns />
+                    </div>
+                </IngestionProvider>
             </div>
         );
     }
