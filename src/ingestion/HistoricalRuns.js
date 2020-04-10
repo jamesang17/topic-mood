@@ -21,10 +21,6 @@ const styles = makeStyles({
 });
 
 class HistoricalRuns extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         const classes = styles;

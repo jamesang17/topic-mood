@@ -5,10 +5,6 @@ import { MContext } from './ChartProvider';
 import './Sentences.css';
 
 class Sentences extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return(
 			<div className="Sentence-container">
@@ -23,7 +19,7 @@ class Sentences extends React.Component {
 						</div>
 					)}
 				</MContext.Consumer>
-		    </div>	
+		    </div>
 		)
 	}
 }
