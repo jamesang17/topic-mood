@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import { MContext } from './IngestionProvider';
+import './StartIngestMenu.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,19 +24,57 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 class StartIngestMenu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            openTopicDialog: false,
+			openTrendDialog: false,
+        }
+        this.handleTopicClickOpen = this.handleTopicClickOpen.bind(this);
+        this.handleTrendClickOpen = this.handleTrendClickOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    handleTopicClickOpen() {
+        console.log("Clicked Topic button!");
+        this.setState({ openTopicDialog: true })
+    }
+
+    handleTrendClickOpen() {
+        console.log("Clicked Trend button!");
+        this.setState({ openTrendDialog: true })
+    }
+
+    handleClose() {
+        console.log("Closing!");
+        if (this.state.openTopicDialog === true){
+            this.setState({ openTopicDialog: false });
+        }
+        if (this.state.openTrendDialog === true){
+            this.setState({ openTrendDialog: false });
+        }
+    }
+
 	render() {
 		return (
 			<div>
                 <MContext.Consumer>
                 {(context) => (
                     <div>
-				    <Fab variant="extended" onClick={context.handleClickOpen}>
-                        Start Ingestion
-                    </Fab>
-                    <Dialog onClose={context.handleClose}
+                    <div className="Fab-button">
+        				<Fab variant="extended" onClick={this.handleTopicClickOpen}>
+                            Start Topic Ingestion
+                        </Fab>
+                    </div>
+                    <div className="Fab-button">
+                        <Fab variant="extended" onClick={this.handleTrendClickOpen}>
+                            Start Trend Ingestion
+                        </Fab>
+                    </div>
+                    <Dialog onClose={this.handleClose}
                         aria-labelledby="form-dialog-title"
-                        open={context.state.open}>
-                        <DialogTitle id="form-dialog-title">Start Ingestion</DialogTitle>
+                        open={this.state.openTopicDialog}>
+                        <DialogTitle id="form-dialog-title">Start Topic Ingestion</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
                                 Enter the topic you would you like to run sentiment analysis on. The topic field can take single
@@ -48,10 +87,28 @@ class StartIngestMenu extends React.Component {
                                 onChange={(e) => context.setTopic(e.currentTarget.value)} />
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={context.handleClose} color="secondary">
+                            <Button onClick={this.handleClose} color="secondary">
                                 Cancel
                             </Button>
-                            <Button onClick={context.handleSubmit} color="primary" >
+                            <Button onClick={() => {context.handleTopicSubmit(); this.handleClose();}} color="primary" >
+                                Start
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                    <Dialog onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                        open={this.state.openTrendDialog}>
+                        <DialogTitle id="form-dialog-title">Start Trend Ingestion</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                Run sentiment analysis on the top 5 globally trending topics on twitter.
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleClose} color="secondary">
+                                Cancel
+                            </Button>
+                            <Button onClick={() => {context.handleTrendSubmit(); this.handleClose();}} color="primary" >
                                 Start
                             </Button>
                         </DialogActions>
