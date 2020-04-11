@@ -21,6 +21,28 @@ const styles = makeStyles({
 });
 
 class HistoricalRuns extends React.Component {
+    constructor(props) {
+        super(props);
+        this.colorState = this.colorState.bind(this);
+    }
+
+    colorState(state) {
+        if (state === "success") {
+            return (
+                <p className="Success-state">state</p>
+            )
+        } else if (state === "failed") {
+            return (
+                <p className="Failed-state">state</p>
+            )
+        } else {
+            return (
+                <p className="Other-state">state</p>
+            )
+        }
+    }
+
+
     render() {
 
         const classes = styles;
@@ -52,7 +74,7 @@ class HistoricalRuns extends React.Component {
                                             <TableCell component="th" scope="row">
                                                 {run.get("startDate")}
                                             </TableCell>
-                                            <TableCell>{run.get("state")}</TableCell>
+                                            <TableCell>{this.colorState(run.get("state"))}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

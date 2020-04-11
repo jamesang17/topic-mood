@@ -1,3 +1,16 @@
 .Refresh-button {
     text-align: left;
 }
+
+.Success-state {
+    color: #009933;
+}
+
+.Failed-state {
+    color: #cc3300;
+}
+
+.Other-state {
+    color: #e68a00;
+    font-weight: bold;
+}
