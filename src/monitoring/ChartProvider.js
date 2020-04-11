@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 export const MContext = React.createContext(); // exporting context object
 
@@ -23,23 +22,15 @@ export default class ChartProvider extends React.Component {
 		this.getTopics = this.getTopics.bind(this);
 	}
 
-	async getTopics() {
-		axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics")
-			.then((response) => {
-				var data = JSON.parse(response.data["body"]);
-				let items = data["Items"];
-				var topics = [];
-				var seen = new Set();
-				for (var i=0;i<4;i++){
-					var idx = Math.floor(Math.random() * items.length);
-					if (!seen.has(idx)) {
-						topics.push(items[idx]["topic"]);
-					} else {
-						seen.add(idx);
-					}
-				}
-				this.setState({ previousTopics: topics });
+	getTopics() {
+		fetch("http://localhost:4000/topics")
+			.then((response) => response.json())
+            .then((response) => {
+				this.setState({ submitted: false });
+				this.setState({ previousTopics: response });
 			})
+            .catch((error) => error);
+
 	}
 
 	componentDidMount() {
@@ -50,22 +41,16 @@ export default class ChartProvider extends React.Component {
         this.setState({value: event.currentTarget.value});
     }
 
-	async getTopicData(topic) {
-		axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + topic)
+	getTopicData(topic) {
+		fetch("http://localhost:4000/topics/" + topic)
+			.then((response) => response.text())
 			.then((response) => {
-				var data = JSON.parse(response.data["body"]);
-				var sentimentData = []
-				let items = data["Items"];
-				for(var i=0;i<items.length;i++){
-					var timestamp = items[i]["timestamp"];
-					var sentiment = items[i]["sentiment"];
-					sentimentData.push({ timestamp,sentiment });
-				}
-				this.setState({ data: sentimentData });
-				this.setState({ topic: items[0]["topic"]});
-				this.setState({ latestSen: items[items.length-1]["sentiment"]});
-				this.setState({ posSent: items[items.length-1]["maxPosText"]});
-				this.setState({ negSent: items[items.length-1]["maxNegText"]});
+				var resMap = new Map(JSON.parse(response));
+				this.setState({ data: resMap.get("data") });
+				this.setState({ topic: resMap.get("topic")});
+				this.setState({ latestSen: resMap.get("latestSen")});
+				this.setState({ posSent: resMap.get("posSent")});
+				this.setState({ negSent: resMap.get("negSent")});
 			});
 	}
 

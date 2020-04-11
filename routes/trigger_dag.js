@@ -30,7 +30,7 @@ module.exports = function(app) {
         startRun.then((response) => {
             startRunStatus = response.status;
             console.log("status : " + startRunStatus);
-            res.send(startRunStatus);
+            res.sendStatus(startRunStatus);
         });
     });
 }
