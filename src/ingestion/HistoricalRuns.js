@@ -29,15 +29,15 @@ class HistoricalRuns extends React.Component {
     colorState(state) {
         if (state === "success") {
             return (
-                <p className="Success-state">state</p>
+                <p className="Success-state">{state}</p>
             )
         } else if (state === "failed") {
             return (
-                <p className="Failed-state">state</p>
+                <p className="Failed-state">{state}</p>
             )
         } else {
             return (
-                <p className="Other-state">state</p>
+                <p className="Other-state">{state}</p>
             )
         }
     }
