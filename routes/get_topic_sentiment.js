@@ -6,7 +6,7 @@ Must pass in app because it contains the express application.
 */
 async function getTopicSentiment(topic) {
     try {
-        return await axios.get("https://wwxa5xebjh.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + topic);
+        return await axios.get("https://myapi.execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + topic);
     } catch(error) {
         console.log(error);
     }
