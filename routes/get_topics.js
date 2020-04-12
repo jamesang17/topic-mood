@@ -23,12 +23,13 @@ module.exports = function(app) {
             let items = data["Items"];
             var topics = [];
             var seen = new Set();
-            for (var i=0;i<4;i++){
+            var i = 0
+            while (i < 4) {
                 var idx = Math.floor(Math.random() * items.length);
                 if (!seen.has(idx)) {
                     topics.push(items[idx]["topic"]);
-                } else {
                     seen.add(idx);
+                    i++;
                 }
             }
             res.send(topics);
