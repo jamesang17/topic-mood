@@ -13,7 +13,12 @@ Data gets pulled from both DynamoDB and Airflow MySQL database and is rendered o
 
 ### Functionality
 The user can
-- trigger dags on Airflow from the UI
-- view past airflow runs
 - view sentiment data results
+![](https://github.com/jamesang17/topic-mood/blob/master/gifs/monitoring.gif)
+- trigger dags on Airflow from the UI and view past airflow runs
+![](https://github.com/jamesang17/topic-mood/blob/master/gifs/ingestion.gif)
 - view a specific topic's sentiment results
+![](https://github.com/jamesang17/topic-mood/blob/master/gifs/ingest-results.gif)
+- view past ingested topic results
+![](https://github.com/jamesang17/topic-mood/blob/master/gifs/search-topics.gif)
+
