@@ -25,7 +25,7 @@ module.exports = function(app) {
         	var sentimentData = []
         	let items = data["Items"];
         	for(var i=0;i<items.length;i++){
-        		var timestamp = items[i]["timestamp"];
+        		var timestamp = items[i]["timestamp"].split("T")[0];
         		var sentiment = items[i]["sentiment"];
         	       sentimentData.push({ timestamp,sentiment });
         	}
