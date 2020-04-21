@@ -14,7 +14,7 @@ class SentimentLineChart extends React.Component {
 					<div>
 						<p>Topic: {context.state.topic}</p>
 						<div className="Chart-container">
-							<ResponsiveContainer width="80%" height={400}>
+							<ResponsiveContainer width="100%" height={400}>
 								<LineChart
 							        data={context.state.data}
 							        margin={{

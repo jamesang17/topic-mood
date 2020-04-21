@@ -13,28 +13,28 @@ class OverallSentiment extends React.Component {
 	}
 
 	renderEmoji(sentVal) {
-		if (sentVal >= 0.2 && sentVal <= 0.7) {
+		if (sentVal >= 0.05 && sentVal <= 0.2) {
 			return (
 				<div>
 					<p>Positive</p>
 					<SentimentSatisfiedRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
-		} else if (sentVal <= -0.2 && sentVal >= -0.7) {
+		} else if (sentVal <= -0.05 && sentVal >= -0.2) {
 			return (
 				<div>
 					<p>Negative</p>
 					<SentimentDissatisfiedRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
-		} else if (sentVal < -0.7) {
+		} else if (sentVal < -0.2) {
 			return (
 				<div>
 					<p>Very Negative</p>
 					<SentimentVeryDissatisfiedRoundedIcon style={{ fontSize: 100 }} />
 				</div>
 				)
-		} else if (sentVal > 0.7) {
+		} else if (sentVal > 0.2) {
 			return (
 				<div>
 					<p>Very Positive</p>

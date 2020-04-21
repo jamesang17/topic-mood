@@ -26,16 +26,10 @@ class MenuAppBar extends React.Component {
       return (
         <div className={this.props.classes.root}>
           <AppBar position="static">
-            <Toolbar>
-              <IconButton edge="start" className={this.props.classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" className={this.props.classes.title}>
-
-                Tweet Analyzer
-              </Typography>
-              <img src={logo} className="App-logo" alt="logo" />
-            </Toolbar>
+            <Typography variant="h6" className={this.props.classes.title}>
+              Tweet Analyzer
+            </Typography>
+            <img src={logo} className="App-logo" alt="logo" />
           </AppBar>
         </div>
       );

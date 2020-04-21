@@ -62,13 +62,13 @@ export default function ModuleContainer() {
           <AppBar position="static">
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
               <Tab label="MONITORING" {...a11yProps(0)} />
-              <Tab label="INGESTION" {...a11yProps(1)} />
+              <Tab label="INGESTION" {...a11yProps(1)} disabled />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0} className="Tab-panel">
-            <MonitoringModule />            
+            <MonitoringModule />
           </TabPanel>
-          <TabPanel value={value} index={1} className="Tab-panel">
+          <TabPanel value={value} index={1} className="Tab-panel" disabled>
             <IngestionModule />
           </TabPanel>
         </div>

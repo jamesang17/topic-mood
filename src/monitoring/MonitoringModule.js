@@ -19,20 +19,20 @@ class MonitoringModule extends React.Component {
                         <MonitorTopicInput className="Monitoring-component" />
                         <div>
                             PREVIOUS TOPICS
-                            <ListTopics className="Monitoring-component" /> 
-                        </div>             
+                            <ListTopics className="Monitoring-component" />
+                        </div>
                     </div>
                     <Divider variant="middle" />
                     <div className="Monitoring-component-container">
                         <OverallSentiment className="Monitoring-component" />
                         <Sentences className="Monitoring-component" />
-                    </div>                      
-                    <Divider variant="middle" />         
+                    </div>
+                    <Divider variant="middle" />
                     <div className="Monitoring-component-container">
                         <SentimentLineChart className="Monitoring-component" />
-                    </div>                     
+                    </div>
                 </ChartProvider>
-            </div>            
+            </div>
         )
     }
 }
