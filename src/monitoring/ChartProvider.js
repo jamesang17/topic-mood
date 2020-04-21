@@ -1,4 +1,5 @@
 import React from 'react';
+import MonitoringSnack from './MonitoringSnack';
 
 export const MContext = React.createContext(); // exporting context object
 
@@ -20,6 +21,11 @@ export default class ChartProvider extends React.Component {
 		this.handleItemClick = this.handleItemClick.bind(this);
 		this.getTopicData = this.getTopicData.bind(this);
 		this.getTopics = this.getTopics.bind(this);
+		this.snackRef = React.createRef();
+	}
+
+	handleOpenSnack() {
+		this.snackRef.current.handleOpen();
 	}
 
 	getTopics() {
@@ -42,22 +48,29 @@ export default class ChartProvider extends React.Component {
     }
 
 	getTopicData(topic) {
-		fetch("http://localhost:4000/topics/" + topic)
+		var encodedTopic = encodeURIComponent(topic);
+		fetch("http://localhost:4000/topics/" + encodedTopic)
 			.then((response) => response.text())
 			.then((response) => {
-				var resMap = new Map(JSON.parse(response));
-				this.setState({ data: resMap.get("data") });
-				this.setState({ topic: resMap.get("topic")});
-				this.setState({ latestSen: resMap.get("latestSen")});
-				this.setState({ posSent: resMap.get("posSent")});
-				this.setState({ negSent: resMap.get("negSent")});
+				if (JSON.parse(response).length === 0) {
+					this.handleOpenSnack();
+				} else {
+					var resMap = new Map(JSON.parse(response));
+					this.setState({ data: resMap.get("data") });
+					this.setState({ topic: resMap.get("topic")});
+					this.setState({ latestSen: resMap.get("latestSen")});
+					this.setState({ posSent: resMap.get("posSent")});
+					this.setState({ negSent: resMap.get("negSent")});
+				}
 			});
 	}
 
 	handleSubmit(event) {
-		console.log("Button was clicked!");
-        console.log("value: " + this.state.value);
-		this.getTopicData(this.state.value);
+		if (this.state.value === "") {
+			this.handleOpenSnack();
+		} else {
+			this.getTopicData(this.state.value);
+		}
 	}
 
 	handleItemClick(event) {
@@ -65,7 +78,6 @@ export default class ChartProvider extends React.Component {
 		this.setState(
 			{topic: topic},
 			function() {
-				console.log("Item topic: " + this.state.topic);
 				this.getTopicData(this.state.topic);
 			}
 		);
@@ -88,6 +100,7 @@ export default class ChartProvider extends React.Component {
 				}
 			}>
 			{this.props.children}
+			<MonitoringSnack ref= {this.snackRef} />
 			</MContext.Provider>
 		)
 	}

@@ -1,6 +1,5 @@
 .Chart-container {
 	min-height: 50vh;
-	min-width: 100vw;
-  	align-items: center;
-  	margin-left: 7%;
+	width: 100vw;
+  align-items: left;
 }
