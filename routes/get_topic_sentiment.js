@@ -6,7 +6,7 @@ Must pass in app because it contains the express application.
 */
 async function getTopicSentiment(topic) {
     try {
-        return await axios.get("https://" + process.env.REACT_APP_API_NAME + ".execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + encodeURIComponent(topic));
+        return await axios.get("https://" + process.env.REACT_APP_API_NAME + ".execute-api.us-east-1.amazonaws.com/dev/sentimentresults/topics/" + topic);
     } catch(error) {
         console.log(error);
     }
@@ -17,7 +17,7 @@ Gets the list of all analzyed topics
 */
 module.exports = function(app) {
     app.get('/topics/:topic',function(req,res) {
-        var topic = decodeURI(req.params.topic);
+        var topic = encodeURIComponent(req.params.topic);
         const topics = getTopicSentiment(topic);
         topics.then((response) => {
             var resData = new Map();
